@@ -1,0 +1,24 @@
+#table-data .clickable tr:hover {
+    cursor: pointer;
+}
+
+#table-data .row-blocked {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#table-data .table-hover tbody tr:hover td {
+    background-color: #58C8F5;
+}
+
+#table-data thead th {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+#table-data tbody td {
+    padding-right: 10px;
+}
