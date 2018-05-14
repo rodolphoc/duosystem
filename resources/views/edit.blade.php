@@ -23,14 +23,15 @@
         <link rel='stylesheet' href="/duosystem/public/packages/bootstrap/css/button.css" type='text/css' />
         <link rel='stylesheet' href="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.css" type='text/css' />
         <link rel='stylesheet' href="/duosystem/public/packages/font-awesome/css/font-awesome.min.css" type='text/css' />
+        <link media="all" type="text/css" rel="stylesheet" href="/duosystem/public/packages/bootstrap-datepicker/css/datepicker3.css?atualizacao=14052018171614">        
         <!-- {{ URL::asset('assets/css/bootstrap.min.css') }} -->
         <script type='text/javascript' src="/duosystem/public/packages/jquery/jquery.min.js"></script>
         <script type='text/javascript' src="/duosystem/public/packages/bootstrap/js/bootstrap.min.js"></script>
         <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.js"></script>
         <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
         <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/tableExport.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/jquery.base64.js"></script>
-
+        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/jquery.base64.js"></script>        
+        <script src="/duosystem/public/packages/bootstrap-datepicker/js/bootstrap-datepicker.js?atualizacao=14052018171614"></script>        
         <style>
             html, body {
                 height: 100%;
@@ -62,6 +63,11 @@
             .list{
                 padding: 20px;
             }
+
+            .tdTitle{
+                text-align: right;
+            }
+
         </style>
     </head>
     <body>
@@ -89,80 +95,103 @@
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-        </div>    
+        </div>   
         <div class="container">
             <div class="content">
                 <div class="title"><img src='http://www.duosystem.com.br/assets/images/logo.png'></div>
             </div>
-            <div class="list">Controle de Atividades!</div>
+            <div class="list">Nova Atividades!</div>
             <hr>
-            <button type="button" class="btn btn-primary" id="new">Nova Atividade</button>
-            <button type="button" class="btn btn-warning" id="edit">Editar Atividade</button>
+            <button type="button" class="btn btn-primary" onclick="javascript:history.back()">Listar Atividades</button>            
             <hr>
             <div>
-                <table id="table-atividades" data-toolbar="#table-atividades-toolbar">
-                    <thead>
-                        <tr>
-                            <th data-field="STATE" data-checkbox="true"></th>
-                            <th data-field="id">id</th>
-                            <th data-field="nome">nome</th>
-                            <th data-field="descricao">descricao</th>
-                            <th data-field="data_inicio">data inicio</th>
-                            <th data-field="data_fim">data fim</th>
-                            <th data-field="status_descricao">status</th>
-                            <th data-field="situacao">ativo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
+                <form action='/duosystem/public/save' method="POST" name="form_atividade" id="form_atividade">
+                <input type="hidden" name="id" value="{{$id}}">
+                {{ csrf_field() }}
+                <table>
+                    <tr>
+                        <td class="tdTitle">Nome:&nbsp;</td>
+                        <td><input type="text" name="nome" id="nome" value="{{$data->nome}}" maxlength="255">&nbsp;*</td>                        
+                    </tr>
+                    <tr>
+                        <td class="tdTitle">Descri&ccedil;&atilde;o:&nbsp;</td>
+                        <td><textarea rows="4" cols="45" name="descricao" id="descricao">{{$data->descricao}}</textarea>&nbsp;*</td>                        
+                    </tr>
+                    <tr>
+                        <td class="tdTitle">Data In&iacute;cio:&nbsp;</td>
+                        <td><input type="text" name="data_inicio" id="data_inicio" value="{{$data->data_inicio}}" maxlength="10">&nbsp;*</td>                        
+                    </tr>
+                    <tr>
+                        <td class="tdTitle">Data Fim:&nbsp;</td>
+                        <td><input type="text" name="data_fim" id="data_fim" value="{{$data->data_fim}}" maxlength="10">&nbsp;*</td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle">Status:&nbsp;</td>
+                        <td>
+                            <select name='status' id='status'>
+                                @foreach ($status as $status_)
+                                    <option value="{{$status_->id}}">{{$status_->descricao}}</option>
+                                @endforeach                        
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle">Ativo:&nbsp;</td>
+                        <td><input type="checkbox" name="ativo" id="ativo" value="1"></td>
+                    </tr>                    
                 </table>
+                </form>
             </div>
+            <div style="text-align: center;padding: 15px;">
+                <button type="button" class="btn btn-secondary" onclick="javascript:history.back()">Cancelar</button>
+                <button type="button" class="btn btn-success" id='salvar'>Salvar</button></div>
+            <hr>
         </div>
     </body>
     <script type='text/javascript'>
         function doOk(){}
         $(function() {
-            // Formata a tabela
-            //var atividades  = JSON.parse("{{$atividades}}");
-            var atividades  = JSON.parse("{{$atividades}}".replace(/&quot;/g,'"'));
-            $gridAtividade = $('#table-atividades').bootstrapTable({
-                data: atividades,
-                cache: false,
-                height: 340,
-                striped: true,
-                search: true,
-                showColumns: false,
-                showRefresh: false,
-                minimumCountColumns: 2,
-                clickToSelect: true,
-                singleSelect: true,
-                showToggle: false,
-                showHeader: true,
-                showExport: true,
-                exportDataType: 'all',
-                exportTypes:    ['excel','csv'],            
-                onCheck: function (row) {
-                    //alert(JSON.stringify(row));
-                }
-            });        
-
             
-            $('#new').click(function(){
-                window.location = 'http://localhost/duosystem/public/edit'
+            $('#data_inicio,#data_fim').datepicker({
+                autoclose:  true
+            ,   format:     'dd/mm/yyyy'
             });
 
-            $('#edit').click(function () {
-                var selects = $gridAtividade.bootstrapTable('getSelections');
-                if (selects.length > 0) {
-                    var id = selects[0]['id'];
-                    window.location = 'http://localhost/duosystem/public/edit/'+id
-                }else{
-                    $('#message-dialog .modal-title').html('Atenção!');
-                    $('#message-dialog .modal-body').html('Você deve selecionar uma atividade.');
-                    $('#message-dialog').modal('show');                          
+            $('#salvar').click(function(){
+
+                var nome        = $('#nome').val();
+                var descricao   = $('#descricao').val();
+                var data_inicio = $('#data_inicio').val();
+                var data_fim    = $('#data_fim').val();
+                var erros       = '';
+
+                if(nome == ''){
+                    erros += ' Nome, ';
                 }
+
+                if(descricao == ''){
+                    erros += ' Descricao, ';
+                }
+
+                if(data_inicio == ''){
+                    erros += ' Data Inicio, ';
+                }
+
+                if(data_fim == ''){
+                    erros += ' Data Fim, ';
+                }
+
+                if(erros != ''){
+                    $('#message-dialog .modal-title').html('Atenção!');
+                    $('#message-dialog .modal-body').html('Os campos: [' + erros + '] são obrigatórios!');
+                    $('#message-dialog').modal('show');                                            
+                }else{
+                    //console.log(erros);
+                    $('#form_atividade').submit();
+                }
+
             });
 
         });
-    </script>
+    </script>    
 </html>
