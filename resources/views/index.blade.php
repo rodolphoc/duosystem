@@ -39,7 +39,7 @@
             body {
                 margin: 0;
                 padding: 0;
-                width: 100%;
+                width: 90%;
                 display: table;
             }
 
@@ -128,7 +128,7 @@
             $gridAtividade = $('#table-atividades').bootstrapTable({
                 data: atividades,
                 cache: false,
-                height: 340,
+                height: 300,
                 striped: true,
                 search: true,
                 showColumns: false,

@@ -34,22 +34,22 @@ $situacao   = isset($data->situacao) ? $data->situacao : 0;
         <link rel='stylesheet' href="/duosystem/public/packages/font-awesome/css/font-awesome.min.css" type='text/css' />
         <link media="all" type="text/css" rel="stylesheet" href="/duosystem/public/packages/bootstrap-datepicker/css/datepicker3.css?atualizacao=14052018171614">        
         <!-- {{ URL::asset('assets/css/bootstrap.min.css') }} -->
-        <script type='text/javascript' src="/duosystem/public/packages/jquery/jquery.min.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap/js/bootstrap.min.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/tableExport.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/jquery.base64.js"></script>        
-        <script src="/duosystem/public/packages/bootstrap-datepicker/js/bootstrap-datepicker.js?atualizacao=14052018171614"></script>        
+        <script type='text/javascript' src="{{asset('/packages/jquery/jquery.min.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap-table/src/bootstrap-table.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap-table/src/extensions/export/bootstrap-table-export.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/tableExportJQueryPlugin/tableExport.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/tableExportJQueryPlugin/jquery.base64.js')}}"></script>        
+        <script src="{{asset('/packages/bootstrap-datepicker/js/bootstrap-datepicker.js?atualizacao=14052018171614')}}"></script>        
         <style>
             html, body {
-                height: 100%;
+                height: 90%;
             }
 
             body {
                 margin: 0;
                 padding: 0;
-                width: 100%;
+                width: 90%;
                 display: table;
             }
 
@@ -159,7 +159,7 @@ $situacao   = isset($data->situacao) ? $data->situacao : 0;
     </body>
     <script type='text/javascript'>
         function doOk(){}
-        var situacao = "{{$data->situacao}}";
+        var situacao = "{{$situacao}}";
         $(function() {
     
             console.log(situacao)
