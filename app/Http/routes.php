@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'AtividadeController@index');
-Route::get('/edit', 'AtividadeController@edit');
-Route::get('/edit/{id}', 'AtividadeController@edit');
-Route::post('/save', 'AtividadeController@save');
+Route::get('/', 			'AtividadeController@index');
+Route::get('/edit', 		'AtividadeController@edit');
+Route::get('/edit/{id}', 	'AtividadeController@edit');
+Route::post('/save', 		'AtividadeController@save');

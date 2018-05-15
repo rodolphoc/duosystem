@@ -4,6 +4,7 @@ $nome       = isset($data->nome) ? $data->nome : '';
 $descricao  = isset($data->descricao) ? $data->descricao : '';
 $data_inicio= isset($data->data_inicio) ? $data->data_inicio : '';
 $data_fim   = isset($data->data_fim) ? $data->data_fim : '';
+$situacao   = isset($data->situacao) ? $data->situacao : 0;
 
 ?>
 <!DOCTYPE html>
@@ -145,7 +146,7 @@ $data_fim   = isset($data->data_fim) ? $data->data_fim : '';
                     </tr>
                     <tr>
                         <td class="tdTitle">Ativo:&nbsp;</td>
-                        <td><input type="checkbox" name="ativo" id="ativo" value="1"></td>
+                        <td><input type="checkbox" name="ativo" id="ativo" value="{{$situacao}}"></td>
                     </tr>                    
                 </table>
                 </form>
@@ -158,8 +159,13 @@ $data_fim   = isset($data->data_fim) ? $data->data_fim : '';
     </body>
     <script type='text/javascript'>
         function doOk(){}
+        var situacao = "{{$data->situacao}}";
         $(function() {
-            
+    
+            console.log(situacao)
+            if(situacao == '1'){
+                $('#ativo').attr('checked', true);
+            }            
             $('#data_inicio,#data_fim').datepicker({
                 autoclose:  true
             ,   format:     'dd/mm/yyyy'
