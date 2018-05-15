@@ -19,17 +19,17 @@
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap/css/bootstrap.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap/css/button.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/font-awesome/css/font-awesome.min.css" type='text/css' />
-        <!-- {{ URL::asset('assets/css/bootstrap.min.css') }} -->
-        <script type='text/javascript' src="/duosystem/public/packages/jquery/jquery.min.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap/js/bootstrap.min.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/tableExport.js"></script>
-        <script type='text/javascript' src="/duosystem/public/packages/tableExportJQueryPlugin/jquery.base64.js"></script>
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap/css/bootstrap.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap/css/button.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap-table/src/bootstrap-table.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/font-awesome/css/font-awesome.min.css')}}" type='text/css' />
+        <script type='text/javascript' src="{{asset('/packages/jquery/jquery.min.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap-table/src/bootstrap-table.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/bootstrap-table/src/extensions/export/bootstrap-table-export.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/tableExportJQueryPlugin/tableExport.js')}}"></script>
+        <script type='text/javascript' src="{{asset('/packages/tableExportJQueryPlugin/jquery.base64.js')}}"></script>        
+        <script src="{{asset('/packages/bootstrap-datepicker/js/bootstrap-datepicker.js?atualizacao=14052018171614')}}"></script>  
 
         <style>
             html, body {

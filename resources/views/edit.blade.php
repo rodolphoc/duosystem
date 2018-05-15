@@ -28,11 +28,12 @@ $situacao   = isset($data->situacao) ? $data->situacao : 0;
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap/css/bootstrap.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap/css/button.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/bootstrap-table/src/bootstrap-table.css" type='text/css' />
-        <link rel='stylesheet' href="/duosystem/public/packages/font-awesome/css/font-awesome.min.css" type='text/css' />
-        <link media="all" type="text/css" rel="stylesheet" href="/duosystem/public/packages/bootstrap-datepicker/css/datepicker3.css?atualizacao=14052018171614">        
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap/css/bootstrap.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap/css/button.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/bootstrap-table/src/bootstrap-table.css')}}" type='text/css' />
+        <link rel='stylesheet' href="{{asset('/packages/font-awesome/css/font-awesome.min.css')}}" type='text/css' />
+
+        <link media="all" type="text/css" rel="stylesheet" href="{{asset('/packages/bootstrap-datepicker/css/datepicker3.css')}}">        
         <!-- {{ URL::asset('assets/css/bootstrap.min.css') }} -->
         <script type='text/javascript' src="{{asset('/packages/jquery/jquery.min.js')}}"></script>
         <script type='text/javascript' src="{{asset('/packages/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -114,7 +115,7 @@ $situacao   = isset($data->situacao) ? $data->situacao : 0;
             <button type="button" class="btn btn-primary" onclick="javascript:history.back()">Listar Atividades</button>            
             <hr>
             <div>
-                <form action='/duosystem/public/save' method="POST" name="form_atividade" id="form_atividade">
+                <form action="{{asset('/save')}}" method="POST" name="form_atividade" id="form_atividade">
                 <input type="hidden" name="id" value="{{$id}}">
                 {{ csrf_field() }}
                 <table>
