@@ -1,3 +1,11 @@
+<?php
+// controle de edicao
+$nome       = isset($data->nome) ? $data->nome : '';
+$descricao  = isset($data->descricao) ? $data->descricao : '';
+$data_inicio= isset($data->data_inicio) ? $data->data_inicio : '';
+$data_fim   = isset($data->data_fim) ? $data->data_fim : '';
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -111,19 +119,19 @@
                 <table>
                     <tr>
                         <td class="tdTitle">Nome:&nbsp;</td>
-                        <td><input type="text" name="nome" id="nome" value="{{$data->nome}}" maxlength="255">&nbsp;*</td>                        
+                        <td><input type="text" name="nome" id="nome" value="{{$nome}}" maxlength="255">&nbsp;*</td>                        
                     </tr>
                     <tr>
                         <td class="tdTitle">Descri&ccedil;&atilde;o:&nbsp;</td>
-                        <td><textarea rows="4" cols="45" name="descricao" id="descricao">{{$data->descricao}}</textarea>&nbsp;*</td>                        
+                        <td><textarea rows="4" cols="45" name="descricao" id="descricao">{{$descricao}}</textarea>&nbsp;*</td>                        
                     </tr>
                     <tr>
                         <td class="tdTitle">Data In&iacute;cio:&nbsp;</td>
-                        <td><input type="text" name="data_inicio" id="data_inicio" value="{{$data->data_inicio}}" maxlength="10">&nbsp;*</td>                        
+                        <td><input type="text" name="data_inicio" id="data_inicio" value="{{$data_inicio}}" maxlength="10">&nbsp;*</td>                        
                     </tr>
                     <tr>
                         <td class="tdTitle">Data Fim:&nbsp;</td>
-                        <td><input type="text" name="data_fim" id="data_fim" value="{{$data->data_fim}}" maxlength="10">&nbsp;*</td>
+                        <td><input type="text" name="data_fim" id="data_fim" value="{{$data_fim}}" maxlength="10">&nbsp;*</td>
                     </tr>
                     <tr>
                         <td class="tdTitle">Status:&nbsp;</td>

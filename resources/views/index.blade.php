@@ -154,6 +154,16 @@
             $('#edit').click(function () {
                 var selects = $gridAtividade.bootstrapTable('getSelections');
                 if (selects.length > 0) {
+
+                    if(selects[0]['id_status'] == 4){
+
+                        $('#message-dialog .modal-title').html('Atenção!');
+                        $('#message-dialog .modal-body').html('Atividade concluída, não será possível edita-la.');
+                        $('#message-dialog').modal('show');                          
+
+                        return
+                    }
+
                     var id = selects[0]['id'];
                     window.location = 'http://localhost/duosystem/public/edit/'+id
                 }else{

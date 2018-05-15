@@ -45,36 +45,38 @@ class AtividadeController extends Controller
 
 	public function edit(Request $request)
 	{
-		$edit 		= !empty($request->route('id')) ?  "and atv.id = {$request->route('id')} " : "";
-		$sql_edit 	= "select 
-					atv.id,
-					status.id as id_status,
-					status.descricao status_descricao,
-					atv.nome,
-					atv.descricao,
-					atv.data_inicio,
-					atv.data_fim,
-					atv.situacao		
-				from
-					atividades atv
-				inner join status on 
-					atv.id_status = status.id
-				where 1=1
-				$edit
-				order by 1 asc";
-		$result_edit = DB::select($sql_edit);
+		$data = [];
+		if(!empty($request->route('id'))){
+			$sql_edit 	= "select 
+						atv.id,
+						status.id as id_status,
+						status.descricao status_descricao,
+						atv.nome,
+						atv.descricao,
+						atv.data_inicio,
+						atv.data_fim,
+						atv.situacao		
+					from
+						atividades atv
+					inner join status on 
+						atv.id_status = status.id
+					where 1=1
+					and atv.id = {$request->route('id')}
+					order by 1 asc";
+			$result_edit = DB::select($sql_edit);
 
-		if(count($result_edit)>0){
-			$result_edit[0]->data_inicio =  substr($result_edit[0]->data_inicio, 8, 10).'/'.substr($result_edit[0]->data_inicio, 5, 2).'/'.substr($result_edit[0]->data_inicio, 0, 4);
-			$result_edit[0]->data_fim =  substr($result_edit[0]->data_fim, 8, 10).'/'.substr($result_edit[0]->data_fim, 5, 2).'/'.substr($result_edit[0]->data_fim, 0, 4);
+			if(count($result_edit)>0){
+				$result_edit[0]->data_inicio =  substr($result_edit[0]->data_inicio, 8, 10).'/'.substr($result_edit[0]->data_inicio, 5, 2).'/'.substr($result_edit[0]->data_inicio, 0, 4);
+				$result_edit[0]->data_fim =  substr($result_edit[0]->data_fim, 8, 10).'/'.substr($result_edit[0]->data_fim, 5, 2).'/'.substr($result_edit[0]->data_fim, 0, 4);
+			}
+
+			$data = $result_edit[0];
 		}
 
 		$sql    	 = "select id, descricao from status order by 1 asc";
 		$result 	 = DB::select($sql);
 
-		//print '<pre>';print_r($result_edit);print '</pre>';
-
-        return view('edit', ['status'=>$result, 'data'=>$result_edit[0], 'id'=>$request->route('id')]);
+        return view('edit', ['status'=>$result, 'data'=>$data, 'id'=>$request->route('id')]);
 
 	}
 
@@ -115,7 +117,7 @@ class AtividadeController extends Controller
 						situacao	= '{$ativo}'
 					where
 						id = '{$dados['id']}'";
-						
+
 			DB::update($sql);			
 		}
 
