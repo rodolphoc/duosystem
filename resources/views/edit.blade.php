@@ -140,7 +140,7 @@ $situacao   = isset($data->situacao) ? $data->situacao : 0;
                         <td>
                             <select name='status' id='status'>
                                 @foreach ($status as $status_)
-                                    <option value="{{$status_->id}}">{{$status_->descricao}}</option>
+                                    <option value="{{$status_->id_status}}">{{$status_->descricao}}</option>
                                 @endforeach                        
                             </select>
                         </td>

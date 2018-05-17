@@ -2,10 +2,17 @@
 -- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: localhost:3306
 -- Generation Time: May 15, 2018 at 12:32 AM
 -- Server version: 5.7.22-0ubuntu0.17.10.1
 -- PHP Version: 7.1.15-0ubuntu0.17.10.1
+=======
+-- Host: localhost
+-- Generation Time: May 17, 2018 at 03:56 PM
+-- Server version: 5.5.60-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.25
+>>>>>>> Finalizando projeto duosystem
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +48,11 @@ CREATE TABLE `atividades` (
 --
 
 INSERT INTO `atividades` (`id`, `id_status`, `nome`, `descricao`, `data_inicio`, `data_fim`, `situacao`) VALUES
+<<<<<<< HEAD
 (1, 1, 'Backup', 'teste 123...', '2018-05-15', '2018-05-31', 1),
+=======
+(1, 1, 'Backup', 'teste 1234...', '2018-05-01', '2018-05-31', 0),
+>>>>>>> Finalizando projeto duosystem
 (2, 4, 'Backup xx', 'teste 123456...', '2018-05-02', '2018-05-30', 1),
 (9, 3, 'Rodox', 'teste para duosystem', '2018-05-10', '2018-05-15', 1),
 (10, 2, 'Layout do carrinho', 'Arrumar calculadora...', '2018-05-14', '2018-05-18', 1);
@@ -52,8 +63,13 @@ INSERT INTO `atividades` (`id`, `id_status`, `nome`, `descricao`, `data_inicio`,
 -- Table structure for table `status`
 --
 
+<<<<<<< HEAD
 CREATE TABLE `status` (
   `id` int(11) NOT NULL,
+=======
+CREATE TABLE IF NOT EXISTS `status` (
+  `id_status` int(11) NOT NULL,
+>>>>>>> Finalizando projeto duosystem
   `descricao` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,7 +77,7 @@ CREATE TABLE `status` (
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`id`, `descricao`) VALUES
+INSERT INTO `status` (`id_status`, `descricao`) VALUES
 (1, 'Pendente'),
 (2, 'Em Desenvolvimento'),
 (3, 'Em Teste'),

@@ -23,7 +23,7 @@ class AtividadeController extends Controller
 
 		$sql = "select 
 					atv.id,
-					status.id as id_status,
+					status.id_status,
 					status.descricao status_descricao,
 					atv.nome,
 					atv.descricao,
@@ -33,7 +33,7 @@ class AtividadeController extends Controller
 				from
 					atividades atv
 				inner join status on 
-					atv.id_status = status.id
+					atv.id_status = status.id_status
 				where 1=1
 				order by 1 asc";
 
@@ -49,7 +49,7 @@ class AtividadeController extends Controller
 		if(!empty($request->route('id'))){
 			$sql_edit 	= "select 
 						atv.id,
-						status.id as id_status,
+						status.id_status as id_status,
 						status.descricao status_descricao,
 						atv.nome,
 						atv.descricao,
@@ -59,7 +59,7 @@ class AtividadeController extends Controller
 					from
 						atividades atv
 					inner join status on 
-						atv.id_status = status.id
+						atv.id_status = status.id_status
 					where 1=1
 					and atv.id = {$request->route('id')}
 					order by 1 asc";
@@ -73,7 +73,7 @@ class AtividadeController extends Controller
 			$data = $result_edit[0];
 		}
 
-		$sql    	 = "select id, descricao from status order by 1 asc";
+		$sql    	 = "select id_status, descricao from status order by 1 asc";
 		$result 	 = DB::select($sql);
 
         return view('edit', ['status'=>$result, 'data'=>$data, 'id'=>$request->route('id')]);
